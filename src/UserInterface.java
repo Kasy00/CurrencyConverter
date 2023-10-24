@@ -23,6 +23,11 @@ public class UserInterface {
                 System.out.println("Enter amount: ");
                 double amount = scanner.nextDouble();
 
+                if(amount <= 0 ){
+                    System.out.println("Amount cannot be less or equal zero");
+                    continue;
+                }
+
                 System.out.println("Enter source currency: ");
                 String sourceCurrencyCode = scanner.next();
 
@@ -33,17 +38,18 @@ public class UserInterface {
                 ICurrency targetCurrency = findCurrencyByCode(currencyCollection, targetCurrencyCode);
 
                 if (sourceCurrency == null || targetCurrency == null) {
-                    System.out.println("Nieprawidłowe kody walut. Spróbuj ponownie.");
+                    System.out.println("Incorrect code. Please try again.");
                     continue;
                 }
 
                 double result = exchange.convert(amount, sourceCurrency, targetCurrency);
 
-                System.out.println("Wynik wymiany: " + result + " " + targetCurrencyCode);
+
+                System.out.println("Result: " + Math.round(result * 100.0) / 100.0  + " " + targetCurrencyCode);
 
             } catch (Exception e) {
-                System.out.println("Błąd: Wprowadzono nieprawidłowe dane. Spróbuj ponownie.");
-                scanner.nextLine(); // Wyczyść bufor wejścia.
+                System.out.println("Error: Entered incorrect data. Try again");
+                scanner.nextLine();
             }
         }
     }

@@ -16,7 +16,7 @@ public class Exchange implements IExchange {
         double sourceFactor = sourceCurrency.getFactor();
         double targetFactor = targetCurrency.getFactor();
 
-        double result = amount *targetFactor/sourceFactor * (sourceRate / targetRate);
+        double result = amount * targetFactor / sourceFactor * (sourceRate / targetRate);
 
         return result;
     }
